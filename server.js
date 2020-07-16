@@ -14,7 +14,8 @@ app.get('/auth', (req, res) => {
   res.send('ok you have authenticate');
 });
 const main = function () {
-  app.listen(8000, () => console.log('listening to port 8000'));
+  const port = process.env.PORT || 8000;
+  app.listen(port, () => console.log('listening to port', port));
 };
 
 main();
