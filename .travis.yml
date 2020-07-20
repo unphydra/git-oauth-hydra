@@ -1,3 +1,5 @@
 language: node_js
 node_js:
   - 12.16.1
+notifications:
+  slack: r2s2workspace:M55FZce4Xlq4gbx4eCXqgiyv
