@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo 'fake test'",
+    "test": "echo 'fake test' && exit 1",
     "start": "node server.js"
   },
   "author": "",
