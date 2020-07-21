@@ -16,9 +16,12 @@ app.use((req, res, next) => {
 app.use(cookieSession({ secret: cookie_secret }));
 app.use(express.static('public'));
 
+app.get('/index', (req, res) => {
+  res.sendFile(`${__dirname}/public/index.html`);
+});
+
 app.get('/login', (req, res) => {
   console.log(req.session.isNew);
-  // console.log(req.session);
   const redirect_uri = 'http://localhost:8000/user/auth';
   const url = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}`;
   res.redirect(url);
@@ -41,9 +44,9 @@ const getUserData = async function (token) {
     .then((result) => result.body);
 };
 
-app.get('/user/auth', async (req, res) => {
-  console.log(req.session.isNew);
-
+app.get('/:type/:id', async (req, res) => {
+  console.log(req.query);
+  console.log(req.params);
   const code = req.query.code;
   const token = await getAccessToken(code);
   const data = await getUserData(token);
